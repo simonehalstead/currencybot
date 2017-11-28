@@ -1,0 +1,22 @@
+{
+  "name": "currency",
+  "version": "1.0.0",
+  "description": "currency converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "yes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "yes"
+  },
+  "keywords": [
+    "currency"
+  ],
+  "author": "Simone",
+  "license": "ISC",
+  "dependencies": {
+    "botbuilder": "^3.12.0",
+    "restify": "^6.3.4"
+  }
+}
