@@ -1,0 +1,2 @@
+# currencybot
+currency rates 
