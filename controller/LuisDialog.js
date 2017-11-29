@@ -1,10 +1,10 @@
 
 var builder = require('botbuilder');
-//var restaurant = require('./RestaurantCard');
+
 var currencyrates = require('./CurrencyCard');
 var currency = require('./FavouriteCurrency');
 var customVision = require('./CustomVision');
-//var qna = require('./QnAMaker');
+
 
 
 
@@ -29,7 +29,7 @@ exports.startDialog = function (bot) {
 
             session.send("You want to delete one of your favourite currency's.");
 
-            // Pulls out the food entity from the session if it exists
+            // Pulls out the currency entity from the session if it exists
             var currencyEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'currency');
 
             // Checks if the for entity was found
@@ -50,7 +50,7 @@ exports.startDialog = function (bot) {
     bot.dialog('GetCurrency', function (session, args) {
         if (!isAttachment(session)) {
 
-            // Pulls out the food entity from the session if it exists
+            // Pulls out the currency entity from the session if it exists
             var currencyEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'currency');
 
             // Checks if the for entity was found
@@ -105,10 +105,10 @@ exports.startDialog = function (bot) {
                 if (results.response) {
                     session.conversationData["username"] = results.response;
                 }
-                // Pulls out the food entity from the session if it exists
+                // Pulls out the currency entity from the session if it exists
                 var currencyEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'currency');
     
-                // Checks if the food entity was found
+                // Checks if the currency entity was found
                 if (currencyEntity) {
                     session.send('Thanks for telling me that \'%s\' is your favourite currency', currencyEntity.entity);
                     currency.sendFavouriteCurrency(session, session.conversationData["username"], currencyEntity.entity); // <-- LINE WE WANT
