@@ -5,42 +5,42 @@ exports.displayFavouriteCurrency = function getFavouriteCurrency(session, userna
     rest.getFavouriteCurrency(url, session, username, handleFavouriteCurrencyResponse)
 };
 
-// exports.sendFavouriteFood = function postFavouriteFood(session, username, favouriteFood){
-//     var url = 'https://foodapp123.azurewebsites.net/tables/FoodBot';
-//     rest.postFavouriteFood(url, username, favouriteFood);
-// };
+exports.sendFavouriteCurrency = function postFavouriteCurrency(session, username, favouriteCurrency){
+    var url = 'https://foodapp123.azurewebsites.net/tables/currencybot';
+    rest.postFavouriteCurrency(url, username, favouriteCurrency);
+};
 
 
-// exports.deleteFavouriteFood = function deleteFavouriteFood(session,username,favouriteFood){
-//     var url  = 'https://foodapp123.azurewebsites.net/tables/FoodBot';
+exports.deleteFavouriteCurrency = function deleteFavouriteCurrency(session,username,favouriteCurrency){
+    var url  = 'https://foodapp123.azurewebsites.net/tables/currencybot';
 
 
-//     rest.getFavouriteFood(url,session, username,function(message,session,username){
-//      var   allFoods = JSON.parse(message);
+    rest.getFavouriteCurrency(url,session, username,function(message,session,username){
+     var   allCurrency = JSON.parse(message);
 
-//         for(var i in allFoods) {
+        for(var i in allCurrency) {
 
-//             if (allFoods[i].favouriteFood === favouriteFood && allFoods[i].username === username) {
+            if (allCurrency[i].favouriteCurrency === favouriteCurrency && allCurrency[i].username === username) {
+                console.log(allCurrency[i]);
 
+                rest.deleteFavouriteCurrency(url,session,username,favouriteCurrency, allCurrency[i].id ,handleDeletedCurrencyResponse)
 
-//                 rest.deleteFavouriteFood(url,session,username,favouriteFood, allFoods[i].id ,handleDeletedFoodResponse)
-
-//             }
-//         }
-
-
-//     });
+            }
+        }
 
 
-// };
+    });
 
 
-// function handleDeletedFoodResponse(body,session,username, favouriteFood){
-
-//         console.log('Done');
+};
 
 
-//}
+function handleDeletedCurrencyResponse(body,session,username, favouriteCurrency){
+
+        console.log('Done');
+
+
+}
 
 
 function handleFavouriteCurrencyResponse(message, session, username) {
@@ -64,6 +64,6 @@ function handleFavouriteCurrencyResponse(message, session, username) {
     }
     
     // Print all favourite foods for the user that is currently logged in
-    session.send("%s, your favourite foods are: %s", username, allCurrency);                
+    session.send("%s, your favourite currency's are: %s", username, allCurrency);                
     
 }

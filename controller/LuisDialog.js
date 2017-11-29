@@ -1,9 +1,9 @@
 
 var builder = require('botbuilder');
 //var restaurant = require('./RestaurantCard');
-//var nutrition = require('./NutritionCard');
+var currencyrates = require('./CurrencyCard');
 var currency = require('./FavouriteCurrency');
-//var customVision = require('./CustomVision');
+var customVision = require('./CustomVision');
 //var qna = require('./QnAMaker');
 
 
@@ -43,56 +43,56 @@ exports.startDialog = function (bot) {
 //         matches: 'QnA'
 //     });
 
-//     bot.dialog('DeleteCurrency', [
-//         function (session, args, next) {
-//             session.dialogData.args = args || {};
-//             if (!session.conversationData["username"]) {
-//                 builder.Prompts.text(session, "Enter a username to setup your account.");
-//             } else {
-//                 next(); // Skip if we already have this info.
-//             }
-//         },
-//         function (session, results,next) {
-//         if (!isAttachment(session)) {
+    bot.dialog('DeleteCurrency', [
+        function (session, args, next) {
+            session.dialogData.args = args || {};
+            if (!session.conversationData["username"]) {
+                builder.Prompts.text(session, "Enter a username to setup your account.");
+            } else {
+                next(); // Skip if we already have this info.
+            }
+        },
+        function (session, results,next) {
+        if (!isAttachment(session)) {
 
-//             session.send("You want to delete one of your favourite foods.");
+            session.send("You want to delete one of your favourite currency's.");
 
-//             // Pulls out the food entity from the session if it exists
-//             var foodEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'food');
+            // Pulls out the food entity from the session if it exists
+            var currencyEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'currency');
 
-//             // Checks if the for entity was found
-//             if (foodEntity) {
-//                 session.send('Deleting \'%s\'...', foodEntity.entity);
-//                 food.deleteCurrency(session,session.conversationData['username'],foodEntity.entity); //<--- CALLL WE WANT
-//             } else {
-//                 session.send("No food identified! Please try again");
-//             }
-//         }
+            // Checks if the for entity was found
+            if (currencyEntity) {
+                session.send('Deleting \'%s\'...', currencyEntity.entity);
+                currency.deleteFavouriteCurrency(session,session.conversationData['username'],currencyEntity.entity); //<--- CALLL WE WANT
+            } else {
+                session.send("No currency identified! Please try again");
+            }
+        }
 
-//     }
-//     ]).triggerAction({
-//         matches: 'DeleteCurrency'
+    }
+    ]).triggerAction({
+        matches: 'DeleteCurrency'
 
-//     });
+    });
 
-//     bot.dialog('GetCurrency', function (session, args) {
-//         if (!isAttachment(session)) {
+    bot.dialog('GetCurrency', function (session, args) {
+        if (!isAttachment(session)) {
 
-//             // Pulls out the food entity from the session if it exists
-//             var foodEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'food');
+            // Pulls out the food entity from the session if it exists
+            var currencyEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'currency');
 
-//             // Checks if the for entity was found
-//             if (foodEntity) {
-//                 session.send('Calculating calories in %s...', foodEntity.entity);
-//                 nutrition.displayCurrencyCards(foodEntity.entity, session);
+            // Checks if the for entity was found
+            if (currencyEntity) {
+                session.send('Getting currency in %s...', currencyEntity.entity);
+                currencyrates.displayCurrencyCards(currencyEntity.entity, session);
 
-//             } else {
-//                 session.send("No food identified! Please try again");
-//             }
-//         }
-//     }).triggerAction({
-//         matches: 'GetCurrency'
-//     });
+            } else {
+                session.send("No currency identified! Please try again");
+            }
+        }
+    }).triggerAction({
+        matches: 'GetCurrency'
+    });
 
    bot.dialog('GetFavouriteCurrency', [
         function (session, args, next) {
@@ -118,37 +118,37 @@ exports.startDialog = function (bot) {
         matches: 'GetFavouriteCurrency'
     });
 
-    // bot.dialog('LookForFavourite', [
-    //     function (session, args, next) {
-    //         session.dialogData.args = args || {};        
-    //         if (!session.conversationData["username"]) {
-    //             builder.Prompts.text(session, "Enter a username to setup your account.");                
-    //         } else {
-    //             next(); // Skip if we already have this info.
-    //         }
-    //     },
-    //     function (session, results, next) {
-    //         if (!isAttachment(session)) {
+    bot.dialog('LookForFavourite', [
+        function (session, args, next) {
+            session.dialogData.args = args || {};        
+            if (!session.conversationData["username"]) {
+                builder.Prompts.text(session, "Enter a username to setup your account.");                
+            } else {
+                next(); // Skip if we already have this info.
+            }
+        },
+        function (session, results, next) {
+            if (!isAttachment(session)) {
 
-    //             if (results.response) {
-    //                 session.conversationData["username"] = results.response;
-    //             }
-    //             // Pulls out the food entity from the session if it exists
-    //             var foodEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'food');
+                if (results.response) {
+                    session.conversationData["username"] = results.response;
+                }
+                // Pulls out the food entity from the session if it exists
+                var currencyEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'currency');
     
-    //             // Checks if the food entity was found
-    //             if (foodEntity) {
-    //                 session.send('Thanks for telling me that \'%s\' is your favourite food', foodEntity.entity);
-    //                 food.sendFavouriteFood(session, session.conversationData["username"], foodEntity.entity); // <-- LINE WE WANT
+                // Checks if the food entity was found
+                if (currencyEntity) {
+                    session.send('Thanks for telling me that \'%s\' is your favourite currency', currencyEntity.entity);
+                    currency.sendFavouriteCurrency(session, session.conversationData["username"], currencyEntity.entity); // <-- LINE WE WANT
     
-    //             } else {
-    //                 session.send("No food identified!!!");
-    //             }
-    //         }
-    //     }
-    // ]).triggerAction({
-    //     matches: 'LookForFavourite'
-    // });
+                } else {
+                    session.send("No currency identified!!!");
+                }
+            }
+        }
+    ]).triggerAction({
+        matches: 'LookForFavourite'
+    });
     
 
     // bot.dialog('WelcomeIntent', function (session, args) {
