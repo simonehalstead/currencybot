@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
@@ -23,6 +23,11 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+body {
+        background-image: url("file:///Users/simonehalstead/Desktop/MSA/currency/currencybot/image/money.png");
+} 
+
+
 </style>
 
 
@@ -33,9 +38,10 @@
 
 <body>
 
+
 <div class="container-fluid" style="text-align: center;">
   <h1 style="background-color: #eee;">Currency Bot Emulator</h1>    
-  <p>This Bot will help convert your currency.</p> 
+  <p style="background-color: #eee;"> This Bot will help convert your currency.</p> 
            
 </div>
 
@@ -52,7 +58,7 @@
         <img id="chat-button" src="res/images/chatico.png" onclick="openChat()" />
         <div id="chat-frame" class="" >
             <iframe src='https://webchat.botframework.com/embed/currencyconverter111?s=YCT-CWHfgvY.cwA.H4k.xw3lgfu1W9-doN-Q3QjusI4Dxq8nC91UINlgWm3HwBQ'></iframe>
-      <img src="res/images/minus.png" onclick="closeChat()" style="width: 300px;/>
+      <img src="res/images/minus.png" onclick="closeChat()" />
         </div>
     </div>
 
