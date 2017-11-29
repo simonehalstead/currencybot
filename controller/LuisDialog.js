@@ -14,34 +14,6 @@ exports.startDialog = function (bot) {
 
     bot.recognizer(recognizer);
 
-//     bot.dialog('WantFood', function (session, args) {
-//         if (!isAttachment(session)) {
-//             // Pulls out the food entity from the session if it exists
-//             var foodEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'food');
-
-//             // Checks if the food entity was found
-//             if (foodEntity) {
-//                 session.send('Looking for restaurants which sell %s...', foodEntity.entity);
-//                 restaurant.displayRestaurantCards(foodEntity.entity, "auckland", session);
-//             } else {
-//                 session.send("No food identified! Please try again");
-//             }
-//         }
-// //this is a change
-//     }).triggerAction({
-//         matches: 'WantFood'
-//     });
-//     bot.dialog('QnA', [
-//     function (session, args, next) {
-//         session.dialogData.args = args || {};
-//         builder.Prompts.text(session, "What is your question?");
-//     },
-//     function (session, results, next) {
-//         qna.talkToQnA(session, results.response);
-//     }
-//     ]).triggerAction({
-//         matches: 'QnA'
-//     });
 
     bot.dialog('DeleteCurrency', [
         function (session, args, next) {
@@ -151,13 +123,27 @@ exports.startDialog = function (bot) {
     });
     
 
-    // bot.dialog('WelcomeIntent', function (session, args) {
-    //     console.log("Hit");
-    //     session.send("Welcome to the FoodBot");
-    
-    // }).triggerAction({
-    //     matches: 'WelcomeIntent'
-    // });
+    bot.dialog('WelcomeIntent', [
+        function (session, next) {
+            session.send("Hey there");
+            if(!session.conversationData["username"]){
+                builder.Prompts.text(session, "Please enter your name");
+            } else {
+                next();
+            }
+    },
+        function (session, results, next){
+            if (results.response) {
+                session.conversationData["username"] = results.response;
+                session.send(`Hey, ${results.response}`);
+            }
+        
+
+    }
+
+    ]).triggerAction({
+        matches: 'WelcomeIntent'
+    });
 
 
 }
