@@ -1,7 +1,7 @@
 var rest = require('../API/Restclient');
 var builder = require('botbuilder');
 
-//Calls 'getNutritionData' in RestClient.js with 'getFoodNutrition' as callback to get ndbno of food
+//Calls getCurrencyCards
 exports.displayCurrencyCards = function getCurrencyData(session){
     var url = "https://globalcurrencies.xignite.com/xGlobalCurrencies.json/ListActiveCurrencies?&_token=9914C05A47E044D0BD022D6BA82318FA";
 

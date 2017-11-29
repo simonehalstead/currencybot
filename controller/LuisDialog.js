@@ -83,7 +83,7 @@ exports.startDialog = function (bot) {
                 }
 
                 session.send("Retrieving your favourite currency");
-                currency.displayFavouriteCurrency(session, session.conversationData["username"]);  // <---- THIS LINE HERE IS WHAT WE NEED 
+                currency.displayFavouriteCurrency(session, session.conversationData["username"]);  // <---- important, checks if going to and displaying currency
             }
         }
     ]).triggerAction({

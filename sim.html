@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+.button {
+    background-color: #4CAF50;
+    border: bold;
+    color: white;
+    padding: 17px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+</style>
+
+
+<html lang="en">
+<head>
+  <title>Currency Bot Emulator</title>
+</head>
+
+<body>
+
+<div class="container-fluid" style="text-align: center;">
+  <h1 style="background-color: #eee;">Currency Bot Emulator</h1>    
+  <p>This Bot will help convert your currency.</p> 
+           
+</div>
+
+<div class="container">
+	<div class="row">
+		<form action="https://www.facebook.com/pg/Currencybotmsa-439000649835638/about/?ref=page_internal" style="text-align: center;">
+    		<input type="submit" class="button" value="Send me to my Facebook page" />
+		</form>
+	</div>
+</div>
+
+
+    <div id="chat">
+        <img id="chat-button" src="res/images/chatico.png" onclick="openChat()" />
+        <div id="chat-frame" class="" >
+            <iframe src='https://webchat.botframework.com/embed/currencyconverter111?s=YCT-CWHfgvY.cwA.H4k.xw3lgfu1W9-doN-Q3QjusI4Dxq8nC91UINlgWm3HwBQ'></iframe>
+      <img src="res/images/minus.png" onclick="closeChat()" style="width: 300px;/>
+        </div>
+    </div>
+
+</body>
+
+
+
+</html>

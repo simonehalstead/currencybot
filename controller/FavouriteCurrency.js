@@ -53,7 +53,7 @@ function handleFavouriteCurrencyResponse(message, session, username) {
 
         //Convert to lower case whilst doing comparison to ensure the user can type whatever they like
         if (username.toLowerCase() === usernameReceived.toLowerCase()) {
-            //Add a comma after all favourite foods unless last one
+            //allows for 1 or more then 1 favourite currencies 
             if(favouriteCurrencyResponse.length - 1) {
                 allCurrency.push(favouriteCurrency);
             }
@@ -63,7 +63,7 @@ function handleFavouriteCurrencyResponse(message, session, username) {
         }        
     }
     
-    // Print all favourite foods for the user that is currently logged in
+    // Print all favourite currency for the user that is currently logged in
     session.send("%s, your favourite currency's are: %s", username, allCurrency);                
     
 }
